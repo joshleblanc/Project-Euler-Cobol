@@ -4,24 +4,30 @@
         	WORKING-STORAGE SECTION.
             01	SUM	PIC 999999.
             01  CURRNUM PIC 999999999999 VALUE 600851475143.
+            01 MAX PIC 999999 VALUE 0.
         	01	LOOP.
-                02 FACTOR PIC 9999 VALUE 2.
-        		02 IND PIC 9999 VALUE 0.
-        		02 MAX PIC 9999 VALUE 1000.
-        		02 REM PIC 9999.
-        		02 ANS PIC 9999.
-                02 TMP PIC 9999999999999999.
+        		02 I PIC 999 VALUE 999.
+            01  ILOOP.
+                02 TMP PIC 999999.
+                02 S PIC X(6).
+                02 RS PIC X(6).
+                02 J PIC 999 VALUE 999.
         PROCEDURE DIVISION.
         MAIN-PARA.
-        	PERFORM MAIN-LOOP UNTIL CURRNUM = 1.
-        	DISPLAY FACTOR.
-        	ACCEPT SUM.
+        	PERFORM MAIN-LOOP UNTIL I = 0.
+            DISPLAY MAX.
+            ACCEPT SUM.
             STOP RUN.
         MAIN-LOOP.
-        	DIVIDE CURRNUM BY FACTOR GIVING TMP REMAINDER REM.
-            IF REM > 0 THEN
-                ADD 1 TO FACTOR
-            ELSE
-                SET CURRNUM TO TMP
-            END-IF.
-            ADD 1 TO IND.
+        	PERFORM INNER-LOOP UNTIL J = 0.
+            SUBTRACT 1 FROM I.
+            SET J TO I.
+        INNER-LOOP
+            SET TMP TO I.
+            MULTIPLY J BY TMP.
+            MOVE TMP TO S.
+            MOVE FUNCTION REVERSE(S) TO RS.
+            IF RS = S AND TMP > MAX THEN
+                MOVE TMP TO MAX
+            END-IF
+            SUBTRACT 1 FROM J.
