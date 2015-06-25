@@ -2,7 +2,7 @@
         PROGRAM-ID. HELLO-WORLD.
         DATA DIVISION.
             WORKING-STORAGE SECTION.
-            01	SUM	PIC 999999.
+            01  SUM PIC 999999.
             01  CURRNUM PIC 999999999999 VALUE 600851475143.
             01  MAX PIC 999999 VALUE 0.
             01  LOOP.
